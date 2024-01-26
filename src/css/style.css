@@ -937,6 +937,10 @@ video {
     --tw-bg-opacity:1;
     background-color:rgb(234 179 8 / var(--tw-bg-opacity));
 }
+.bg-darkCyan {
+    --tw-bg-opacity:1;
+    background-color:rgb(29 120 116 / var(--tw-bg-opacity));
+}
 .p-12 {
     padding:3rem;
 }
@@ -2492,6 +2496,10 @@ iframe.wait-autoplay {
   .hover\:text-blue-700:hover {
     --tw-text-opacity:1;
     color:rgb(29 78 216 / var(--tw-text-opacity));
+}
+  .hover\:text-darkCyan:hover {
+    --tw-text-opacity:1;
+    color:rgb(29 120 116 / var(--tw-text-opacity));
 }
   .hover\:text-gray-800:hover {
     --tw-text-opacity:1;
