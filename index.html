@@ -448,21 +448,25 @@
 									about service, please contact us.</p>
 							</header><!-- end section header -->
 
+							<header id="greetings" class="text-center mx-auto mb-12 lg:px-20 hidden">
+								<p class="text-darkCyan leading-relaxed font-light text-xl mx-auto pb-2">Thank you, we will contact you as soon as possible!</p>
+							</header><!-- end section header -->
+
 							<!-- contact form -->
-							<form class="gform"  method="POST" action="https://script.google.com/macros/s/AKfycbx87Onke-o4QP2ovYivFAyh9kk0EvSAO-mVQ7brGkehAQnyEau3qePXtRePm26Xsy6rbg/exec">
+							<form id="contactform" class="gform">
 								<div class="flex flex-wrap flex-row -mx-4">
 									<div class="flex-shrink w-full max-w-full md:w-1/2 px-4 mb-6">
 										<label class="inline-block mb-2" for="name">Your Name</label>
 										<input type="text" name="name"
 											class="w-full leading-5 relative py-3 px-5 rounded text-gray-800 bg-white border-b border-white-dirty overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600"
-											id="name" required>
+											id="name" maxlength="25" required>
 										<div class="validate"></div>
 									</div>
 									<div class="flex-shrink w-full max-w-full md:w-1/2 px-4 mb-6">
 										<label class="inline-block mb-2" for="email">Your Email</label>
 										<input type="email"
 											class="w-full leading-5 relative py-3 px-5 rounded text-gray-800 bg-white border-b border-white-dirty overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600"
-											name="email" id="email" required>
+											name="email" id="email" maxlength="50" required>
 										<div class="validate"></div>
 									</div>
 								</div>
@@ -470,14 +474,14 @@
 									<label class="inline-block mb-2" for="subject">Subject</label>
 									<input type="text"
 										class="w-full leading-5 relative py-3 px-5 rounded text-gray-800 bg-white border-b border-white-dirty overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600"
-										name="subject" id="subject" required>
+										name="subject" id="subject" required maxlength="50">
 									<div class="validate"></div>
 								</div>
 								<div class="mb-6">
 									<label class="inline-block mb-2" for="messages">Message</label>
 									<textarea
 										class="w-full leading-5 relative py-3 px-5 rounded text-gray-800 bg-white border-b border-white-dirty overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600"
-										name="message" rows="10" id="messages" required></textarea>
+										name="message" rows="10" id="messages" required maxlength="255"></textarea>
 									<div class="validate"></div>
 								</div>
 								<div class="text-center mb-6">
@@ -590,6 +594,44 @@
 
 	<!-- Production js -->
 	<!-- <script src="dist/js/scripts.js"></script> -->
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XD1SVQWXNM"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-XD1SVQWXNM');
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script>		
+		$( "#contactform" ).submit(function( event ) {
+		 		  
+		  event.preventDefault();
+		 		  
+		  var URL = "https://script.google.com/macros/s/AKfycbw4kEZubrBBFc0ZOL67yGYOl0P5FYU4Kk7Flpr_6Xie9vYks7KBgetoZS5s4TIoy2It/exec";	
+		  var formData = $("#contactform").serializeArray();
+				 		 		  
+		  $.ajax({
+			type: "POST",
+			url: URL,
+			data: formData,
+			success: function(response){				
+				if(response.result == "success"){
+					$('#contactform').trigger("reset");
+					$('#greetings').show();
+				} else {
+					alert('We had an issue submitting your inquiry, Kindly try again later');
+				}
+				
+			}
+		  });
+		  
+		});
+	</script>
+	
 </body>
 
 </html>
